@@ -25,7 +25,7 @@ namespace cmdShoppingList2
             {"Q", "Quit the program" }
         };
        
-        public static Dictionary<string, string> catChoice = new Dictionary<string, string>
+        public static Dictionary<string, string> catChoices = new Dictionary<string, string>
         {
             {"1", "Food"},
             {"2", "Clothing"},
@@ -44,7 +44,7 @@ namespace cmdShoppingList2
         };
 
         // main list, mvp  
-        public Dictionary<int, List<string>> shoppingCart = new Dictionary<int, List<string>>();
+        public Dictionary<int, Product> shoppingCart = new Dictionary<int, Product>();
         // {id, { this.name, this.category, this.priority, this.dateAdded, this.purchaseStatus }}
         // shoppingCart.Add -> user does (name, category, priority), we do (id, dateAdded)
         // shoppingCart.Remove -> .removeAtIndex? remove via List[value].pop ? 
@@ -90,12 +90,34 @@ namespace cmdShoppingList2
             Console.WriteLine(string.Concat(Enumerable.Repeat("*", width)));
             Console.WriteLine();
         }
+
+        public static void actionMenu(string input)
+        {
+
+            string pressBtn = Console.ReadLine().ToUpper();
+        }
     }
 
-    class product
-    {
-        public List<string> item() { };
 
+    class Product
+    {
+        // Property with get/set
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Priority { get; set; }
+        public DateTime DateAdded { get; set; }
+        public DateTime DatePurchased;
+        //
+        // public List<string> item() { };
+
+        public Product(string _name, string _cat, string _pri)
+        {
+            this.Name = _name;
+            this.Category = _cat;
+            this.Priority = _pri;
+
+
+        } 
 
     }
 }
