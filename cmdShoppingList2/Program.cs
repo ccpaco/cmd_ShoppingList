@@ -44,7 +44,7 @@ namespace cmdShoppingList2
         };
 
         // main list, mvp  
-        public Dictionary<int, Product> shoppingCart = new Dictionary<int, Product>();
+        public static Dictionary<int, Product> shoppingCart = new Dictionary<int, Product>();
         // {id, { this.name, this.category, this.priority, this.dateAdded, this.purchaseStatus }}
         // shoppingCart.Add -> user does (name, category, priority), we do (id, dateAdded)
         // shoppingCart.Remove -> .removeAtIndex? remove via List[value].pop ? 
@@ -58,8 +58,10 @@ namespace cmdShoppingList2
             printLine();
             //splash screen method
             splash();
-
+            string sbaRules = Console.ReadLine();
+            actionMenu(sbaRules);
             printLine();
+
 
             // ActionMenu() -> New items .Add
             // return dictionary shoppingCart<>
@@ -93,8 +95,44 @@ namespace cmdShoppingList2
 
         public static void actionMenu(string input)
         {
+            
+            Console.WriteLine("Type A please");
+            string vx = Console.ReadLine();
+            if (vx == "A")
+            {
 
-            string pressBtn = Console.ReadLine().ToUpper();
+                Console.WriteLine("Pick an item");
+                string jimmy  = Console.ReadLine();
+                printLine();
+                Console.WriteLine($"Enter a Category");
+                
+                foreach(KeyValuePair<string,string> s in catChoices)
+                {
+                    Console.WriteLine($" {s.Key} {s.Value}");
+                    
+                }
+
+                string sd = Console.ReadLine();
+
+                Console.WriteLine("Enter a priority, low medium or high");
+                
+                foreach (KeyValuePair<string, string> s in priChoice)
+                {
+                    Console.WriteLine($" {s.Key} {s.Value}");
+
+                }
+
+                string av = Console.ReadLine();
+                Product jimmyBag = new Product(jimmy, sd, av);
+                shoppingCart.Add(1, jimmyBag);
+
+                foreach (KeyValuePair<int, Product> svxs in shoppingCart)
+                {
+                    Console.WriteLine($ "Your cart: {svxs} ");
+                }
+            }
+            Console.ReadKey();
+           
         }
     }
 
@@ -114,10 +152,15 @@ namespace cmdShoppingList2
         {
             this.Name = _name;
             this.Category = _cat;
-            this.Priority = _pri;
+            this.Priority = _pri; 
+            // dateTime
+            // dateTIme
+
 
 
         } 
+
+
 
     }
 }
